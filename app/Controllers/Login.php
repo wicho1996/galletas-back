@@ -16,6 +16,12 @@ class Login extends Controller
       echo json_encode($paginas);
     }
 
+    public function getUsuarios(){
+      $Mlogin = model(Mlogin::class);
+      $usuarios = $Mlogin->getUsuarios()->getResult();
+      echo json_encode($usuarios);
+    }
+
     public function validarUsuario(){
       $Mlogin = model(Mlogin::class);
       $data = file_get_contents('php://input');

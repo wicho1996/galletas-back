@@ -16,6 +16,10 @@ class Mlogin extends Model
       ");
     }
 
+    public function getUsuarios(){
+      return $this->db->query("SELECT * FROM empleado;");
+    }
+
     public function getArbolPaginas(){
       $paginas = $this->getPaginas()->getResult();
 

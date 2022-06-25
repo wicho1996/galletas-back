@@ -32,11 +32,11 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'LAPTOP-4I7F3KG4\SQLEXPRESS',
-        'username' => 'sa',
-        'password' => '123456',
-        'database' => 'plantilla',
-        'DBDriver' => 'sqlsrv',
+        'hostname' => '162.241.63.88',
+        'username' => 'gallet11_admin',
+        'password' => '#Galletasqro#',
+        'database' => 'gallet11_galletasqro',
+        'DBDriver' => 'mysqli',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
