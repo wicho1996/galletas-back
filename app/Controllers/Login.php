@@ -16,9 +16,9 @@ class Login extends Controller
       echo json_encode($paginas);
     }
 
-    public function getUsuarios(){
+    public function getEmpleados(){
       $Mlogin = model(Mlogin::class);
-      $usuarios = $Mlogin->getUsuarios()->getResult();
+      $usuarios = $Mlogin->getEmpleados()->getResult();
       echo json_encode($usuarios);
     }
 

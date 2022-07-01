@@ -16,7 +16,7 @@ class Mlogin extends Model
       ");
     }
 
-    public function getUsuarios(){
+    public function getEmpleados(){
       return $this->db->query("SELECT * FROM empleado;");
     }
 
