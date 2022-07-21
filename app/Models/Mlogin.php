@@ -45,4 +45,12 @@ class Mlogin extends Model
 
     }
 
+    public function validarUsuario($usuario, $contraseña){
+      $usuario = $this->db->query("SELECT * FROM empleado WHERE usuario = ? AND contraseña = ?", [$usuario, $contraseña])->getRow();
+      if (isset($usuario->usuario)) {
+        return ["estatus" => 1, "mensaje" => "información correcta", "data" => $usuario];
+      }
+      return ["estatus" => 0, "mensaje" => "El suuario o contraseña son incorrectos", "data" => []];
+    }
+
 }
