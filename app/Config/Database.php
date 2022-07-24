@@ -36,7 +36,7 @@ class Database extends Config
         'username' => 'gallet11_admin',
         'password' => '#Galletasqro#',
         'database' => 'gallet11_galletasqro',
-        'DBDriver' => 'mysqli',
+        'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
