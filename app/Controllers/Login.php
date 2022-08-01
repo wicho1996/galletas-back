@@ -22,12 +22,12 @@ class Login extends Controller
       echo json_encode(["estatus" => 0, "mensaje" => "No se logró obtener la información", "usuarios" => $usuarios]);
     }
 
-    public function validarUsuario(){
+    public function validarSesion(){
       $Mlogin = model(Mlogin::class);
       $data = json_decode(file_get_contents('php://input'));
-      print_r($data->par1);
-      // $users = $Mlogin->getUserByUserName($data);
-      echo json_encode(["estatus" => 1, "mensaje" => 'Mensaje acomodado', "data" => ["users" => $users]]);
+      $sesion = $Mlogin->validarUsuario($data->usuario, $data->contraseña);
+      $sesion['token'] = $Mlogin->insertToken($data->usuario, $data->contraseña);
+      echo json_encode($sesion);
     }
 
     public function inciarSesion(){
@@ -41,5 +41,12 @@ class Login extends Controller
       $Mlogin = model(Mlogin::class);
       $data = file_get_contents('php://input');
       echo json_encode(["estatus" => 1, "mensaje" => 'Mensaje acomodado', "data" => ["users" => $users]]);
+    }
+
+    public function validarToken(){
+      $Mlogin = model(Mlogin::class);
+      $data = json_decode(file_get_contents('php://input'));
+      $sesion = $Mlogin->validarToken($data->token);
+      echo json_encode($sesion);
     }
 }

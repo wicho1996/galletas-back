@@ -53,4 +53,19 @@ class Mlogin extends Model
       return ["estatus" => 0, "mensaje" => "El suuario o contraseña son incorrectos", "data" => []];
     }
 
+
+    public function insertToken($usuario, $contraseña){
+      $token = bin2hex(random_bytes(64));
+      $res = $this->db->query("UPDATE empleado SET token = ? WHERE usuario = ? AND contraseña = ?", [$token, $usuario, $contraseña]);
+      return $token;
+    }
+
+    public function validarToken($token){
+      $usuario = $this->db->query("SELECT * FROM empleado WHERE token = ?", [$token])->getRow();
+      if (isset($usuario->usuario)) {
+        return ["estatus" => 1, "mensaje" => "información correcta", "data" => $usuario];
+      }
+      return ["estatus" => 0, "mensaje" => "El suuario o contraseña son incorrectos", "data" => []];
+    }
+
 }
