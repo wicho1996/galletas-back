@@ -50,7 +50,7 @@ class Mlogin extends Model
       if (isset($usuario->usuario)) {
         return ["estatus" => 1, "mensaje" => "información correcta", "data" => $usuario];
       }
-      return ["estatus" => 0, "mensaje" => "El suuario o contraseña son incorrectos", "data" => []];
+      return ["estatus" => 0, "mensaje" => "Datos incorrectos", "data" => []];
     }
 
 
