@@ -19,7 +19,7 @@ class Login extends Controller
     public function getEmpleados(){
       $Mlogin = model(Mlogin::class);
       $usuarios = $Mlogin->getEmpleados()->getResult();
-      echo json_encode(["estatus" => 0, "mensaje" => "No se logró obtener la información", "usuarios" => $usuarios]);
+      echo json_encode($usuarios);
     }
 
     public function validarSesion(){
