@@ -13,6 +13,6 @@ class Mdispositivo extends Model
 
     public function updateUbication( $latitud, $longitud, $id){
       $res = $this->db->query("UPDATE movil SET lat = ? , lon = ? WHERE id_movil = ?", [$latitud, $longitud, $id]);
-      return $token;
+      return $res;
     }
 }

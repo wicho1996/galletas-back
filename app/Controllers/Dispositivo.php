@@ -16,9 +16,10 @@ class Dispositivo extends Controller
     }
  
     public function updateUbication(){
-      $Mlogin = model(Mdispositivo::class);
-      $data = file_get_contents('php://input');
-      echo json_encode(["estatus" => 1, "mensaje" => 'Mensaje acomodado', "data" => ["users" => $users]]);
+      $Mdispositivo = model(Mdispositivo::class);
+      $data = json_decode(file_get_contents('php://input'));
+      $update = $Mdispositivo->updateUbication($data->latitud, $data->longitud, $data->id);
+      echo json_encode($update);
     }
 
 
