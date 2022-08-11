@@ -56,6 +56,7 @@ class Mcliente extends Model
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
+    // Mobil
     public function insertarTienda($tipot,$tienda,$status,$lat,$long){
   
       $res = $this->db->query("INSERT INTO cliente (id_tipo_cliente, tienda, estatus, fecha_creacion, fecha_modificacion, lat, lon) VALUES (?,?,?,now(),now(),?,?)",[$tipot,$tienda,$status,$lat,$long]);
