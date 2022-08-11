@@ -37,4 +37,12 @@ class Cliente extends Controller
       $cliente['clientes'] = $Mcliente->getClientes()->getResult();
       echo json_encode($cliente);
     }
+
+    public function delCliente(){
+      $Mcliente = model(Mcliente::class);
+      $data = json_decode(file_get_contents('php://input'));
+      $cliente = $Mcliente->delCliente($data->id_cliente);
+      $cliente['clientes'] = $Mcliente->getClientes()->getResult();
+      echo json_encode($cliente);
+    }
 }

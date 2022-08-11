@@ -45,7 +45,14 @@ class Mcliente extends Model
       $builder->where('id_cliente', $id_cliente);
 
       if (!$builder->update($data)) ["estatus" => -1, "mensaje" => 'Error al actualizar el Cliente'];
+      return ["estatus" => 1, "mensaje" => 'OK'];
+    }
 
+    function delCliente($id_cliente){
+      $builder = $this->db->table('cliente');
+      $builder->where('id_cliente', $id_cliente);
+
+      if (!$builder->delete()) ["estatus" => -1, "mensaje" => 'Error al borrar el Cliente'];
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
