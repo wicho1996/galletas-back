@@ -45,4 +45,12 @@ class Cliente extends Controller
       $cliente['clientes'] = $Mcliente->getClientes()->getResult();
       echo json_encode($cliente);
     }
+
+    // Mobil  
+    public function newCliente(){
+      $Mcliente = model(Mcliente::class);
+      $data = json_decode(file_get_contents('php://input'));
+      $insertar = $Mcliente->insertarTienda($data->tipot, $data->tienda,$data->status, $data->lat, $data->long);
+      echo json_encode($insertar);
+    }
 }
