@@ -26,7 +26,7 @@ class Mcliente extends Model
       
       $builder = $this->db->table('cliente');
 
-      if (!$builder->insert($data)) ["estatus" => -1, "mensaje" => 'Error al registrar Cliente'];
+      if (!$builder->insert($data)) return ["estatus" => -1, "mensaje" => 'Error al registrar Cliente'];
 
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
@@ -44,7 +44,7 @@ class Mcliente extends Model
       $builder = $this->db->table('cliente');
       $builder->where('id_cliente', $id_cliente);
 
-      if (!$builder->update($data)) ["estatus" => -1, "mensaje" => 'Error al actualizar el Cliente'];
+      if (!$builder->update($data)) return ["estatus" => -1, "mensaje" => 'Error al actualizar el Cliente'];
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
@@ -52,7 +52,7 @@ class Mcliente extends Model
       $builder = $this->db->table('cliente');
       $builder->where('id_cliente', $id_cliente);
 
-      if (!$builder->delete()) ["estatus" => -1, "mensaje" => 'Error al borrar el Cliente'];
+      if (!$builder->delete()) return ["estatus" => -1, "mensaje" => 'Error al borrar el Cliente'];
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
