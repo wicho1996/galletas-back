@@ -11,7 +11,7 @@ class Cliente extends Controller
 
     public function getClientes(){
       $Mcliente = model(Mcliente::class);
-      $clientes = $Mcliente->getClientes()->getResult();
+      $clientes['clientes'] = $Mcliente->getClientes()->getResult();
       echo json_encode($clientes);
     }
 
@@ -20,6 +20,13 @@ class Cliente extends Controller
       $data = json_decode(file_get_contents('php://input'));
       $cliente = $Mcliente->getCliente($data->id_cliente)->getResult();
       echo json_encode($cliente);
+    }
+
+    public function getClienteTipos(){
+      $Mcliente = model(Mcliente::class);
+      $data = json_decode(file_get_contents('php://input'));
+      $res['clienteTipos'] = $Mcliente->getClienteTipos()->getResult();
+      echo json_encode($res);
     }
 
     public function addCliente(){

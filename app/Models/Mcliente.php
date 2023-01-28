@@ -14,6 +14,10 @@ class Mcliente extends Model
       return $this->db->query("SELECT * FROM cliente WHERE id_cliente = ?;", [$idCliente]);
     }
 
+    function getClienteTipos(){
+      return $this->db->query("SELECT * FROM cliente_tipo");
+    }
+
     function addCliente($data){
       $data = [
         "tienda" => isset($data->tienda) ? $data->tienda : NULL,
