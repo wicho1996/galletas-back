@@ -21,7 +21,7 @@ class Mcliente extends Model
     function addCliente($data){
       $data = [
         "tienda" => isset($data->tienda) ? $data->tienda : NULL,
-        "id_tipo_cliente" => isset($data->id_tipo_cliente) ? $data->id_tipo_cliente : NULL,
+        "id_tipo_cliente" => isset($data->clienteTipo) ? $data->clienteTipo->id_tipo_cliente : NULL,
         "lat" => isset($data->lat) ? $data->lat : NULL,
         "lon" => isset($data->lon) ? $data->lon : NULL,
         "estatus" => isset($data->estatus) ? $data->estatus : NULL,
@@ -38,7 +38,7 @@ class Mcliente extends Model
     function setCliente($id_cliente, $data){
       $data = [
         "tienda" => isset($data->tienda) ? $data->tienda : NULL,
-        "id_tipo_cliente" => isset($data->id_tipo_cliente) ? $data->id_tipo_cliente : NULL,
+        "id_tipo_cliente" => isset($data->clienteTipo) ? $data->clienteTipo->id_tipo_cliente : NULL,
         "lat" => isset($data->lat) ? $data->lat : NULL,
         "lon" => isset($data->lon) ? $data->lon : NULL,
         "estatus" => isset($data->estatus) ? $data->estatus : NULL,
