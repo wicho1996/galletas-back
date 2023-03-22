@@ -11,7 +11,9 @@ class Dispositivo extends Controller
 
     public function getDispositivos(){
       $Mdispositivo = model(Mdispositivo::class);
-      $dispositivos = $Mdispositivo->getDispositivos()->getResult();
+      $data = json_decode(file_get_contents('php://input'));
+      $estatusDisp = isset($data->estatusDisp) ? $data->estatusDisp : null;
+      $dispositivos = $Mdispositivo->getDispositivos($estatusDisp)->getResult();
       echo json_encode($dispositivos);
     }
 

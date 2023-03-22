@@ -6,8 +6,12 @@ use CodeIgniter\Model;
 
 class Mdispositivo extends Model
 {
-    function getDispositivos(){
-      return $this->db->query("SELECT * FROM  movil;");
+    function getDispositivos($estatus = null){
+      $where = '';
+      if ($estatus !== null) {
+        $where = 'WHERE estatus = ' . $estatus;
+      }
+      return $this->db->query("SELECT * FROM  movil $where;");
     }
 
     function getDispositivo($idMovil){
