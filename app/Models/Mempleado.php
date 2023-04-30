@@ -7,7 +7,11 @@ use CodeIgniter\Model;
 class Mempleado extends Model
 {
     function getEmpleados(){
-      return $this->db->query("SELECT id_empleado, id_tipo_empleado, nombre, apellido_paterno, apellido_materno, telefono, id_movil, estatus, usuario FROM empleado;");
+      return $this->db->query("SELECT 
+        emp.id_empleado, emp.id_tipo_empleado, emp.nombre, emp.apellido_paterno, emp.apellido_materno, emp.telefono, emp.id_movil, mov.descripcion, emp.estatus, emp.usuario 
+        FROM empleado emp
+        JOIN movil mov ON emp.id_movil = mov.id_movil AND mov.estatus = 1;
+      ");
     }
 
     function getEmpleado($idEmpleado){
