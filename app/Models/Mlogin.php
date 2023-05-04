@@ -65,7 +65,7 @@ class Mlogin extends Model
       if (isset($usuario->usuario)) {
         return ["estatus" => 1, "mensaje" => "información correcta", "data" => $usuario];
       }
-      return ["estatus" => 0, "mensaje" => "El Inicie sesión", "data" => []];
+      return ["estatus" => 0, "mensaje" => "Inicie sesión", "data" => []];
     }
 
 }
