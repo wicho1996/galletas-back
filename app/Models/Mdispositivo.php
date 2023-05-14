@@ -15,7 +15,7 @@ class Mdispositivo extends Model
     }
 
     function getDispositivo($idMovil){
-      return $this->db->query("SELECT * FROM movil WHERE id_movil = ?;", [$idMovil]);
+      return $this->db->query("SELECT * FROM movil WHERE idMovil = ?;", [$idMovil]);
     }
 
     function addDispositivo($data){
@@ -34,7 +34,7 @@ class Mdispositivo extends Model
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
-    function setDispositivo($id_movil, $data){
+    function setDispositivo($idMovil, $data){
       $data = [
         "imei" => isset($data->imei) ? $data->imei : NULL,
         "celular" => isset($data->celular) ? $data->celular : NULL,
@@ -44,15 +44,15 @@ class Mdispositivo extends Model
       ];
       
       $builder = $this->db->table('movil');
-      $builder->where('id_movil', $id_movil);
+      $builder->where('idMovil', $idMovil);
 
       if (!$builder->update($data)) return ["estatus" => -1, "mensaje" => 'Error al actualizar el Dispositivo'];
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
-    function delDispositivo($id_movil){
+    function delDispositivo($idMovil){
       $builder = $this->db->table('movil');
-      $builder->where('id_movil', $id_movil);
+      $builder->where('idMovil', $idMovil);
 
       if (!$builder->delete()) return ["estatus" => -1, "mensaje" => 'Error al borrar el Dispositivo'];
       return ["estatus" => 1, "mensaje" => 'OK'];
@@ -60,7 +60,7 @@ class Mdispositivo extends Model
 
     // Movil
     public function updateUbication( $latitud, $longitud, $id){
-      $res = $this->db->query("UPDATE movil SET lat = ? , lon = ? WHERE id_movil = ?", [$latitud, $longitud, $id]);
+      $res = $this->db->query("UPDATE movil SET lat = ? , lon = ? WHERE idMovil = ?", [$latitud, $longitud, $id]);
       return $res;
     }
 }

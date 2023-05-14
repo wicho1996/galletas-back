@@ -18,7 +18,7 @@ class Empleado extends Controller
     public function getEmpleado(){
       $Mempleado = model(Mempleado::class);
       $data = json_decode(file_get_contents('php://input'));
-      $empleado = $Mempleado->getEmpleado($data->id_empleado)->getResult();
+      $empleado = $Mempleado->getEmpleado($data->idEmpleado)->getResult();
       echo json_encode($empleado);
     }
 
@@ -33,7 +33,7 @@ class Empleado extends Controller
     public function setEmpleado(){
       $Mempleado = model(Mempleado::class);
       $data = json_decode(file_get_contents('php://input'));
-      $empleado = $Mempleado->setEmpleado($data->id_empleado, $data);
+      $empleado = $Mempleado->setEmpleado($data->idEmpleado, $data);
       $empleado['empleados'] = $Mempleado->getEmpleados()->getResult();
       echo json_encode($empleado);
     }
@@ -41,7 +41,7 @@ class Empleado extends Controller
     public function delEmpleado(){
       $Mempleado = model(Mempleado::class);
       $data = json_decode(file_get_contents('php://input'));
-      $empleado = $Mempleado->delEmpleado($data->id_empleado);
+      $empleado = $Mempleado->delEmpleado($data->idEmpleado);
       $empleado['empleados'] = $Mempleado->getEmpleados()->getResult();
       echo json_encode($empleado);
     }

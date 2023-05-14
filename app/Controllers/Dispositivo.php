@@ -20,7 +20,7 @@ class Dispositivo extends Controller
     public function getDispositivo(){
       $Mdispositivo = model(Mdispositivo::class);
       $data = json_decode(file_get_contents('php://input'));
-      $dispositivo = $Mdispositivo->getDispositivo($data->id_movil)->getResult();
+      $dispositivo = $Mdispositivo->getDispositivo($data->idMovil)->getResult();
       echo json_encode($dispositivo);
     }
 
@@ -35,7 +35,7 @@ class Dispositivo extends Controller
     public function setDispositivo(){
       $Mdispositivo = model(Mdispositivo::class);
       $data = json_decode(file_get_contents('php://input'));
-      $dispositivo = $Mdispositivo->setDispositivo($data->id_movil, $data);
+      $dispositivo = $Mdispositivo->setDispositivo($data->idMovil, $data);
       $dispositivo['dispositivos'] = $Mdispositivo->getDispositivos()->getResult();
       echo json_encode($dispositivo);
     }
@@ -43,7 +43,7 @@ class Dispositivo extends Controller
     public function delDispositivo(){
       $Mdispositivo = model(Mdispositivo::class);
       $data = json_decode(file_get_contents('php://input'));
-      $dispositivo = $Mdispositivo->delDispositivo($data->id_movil);
+      $dispositivo = $Mdispositivo->delDispositivo($data->idMovil);
       $dispositivo['dispositivos'] = $Mdispositivo->getDispositivos()->getResult();
       echo json_encode($dispositivo);
     }

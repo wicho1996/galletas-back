@@ -8,17 +8,17 @@ class Mempleado extends Model
 {
     function getEmpleados(){
       return $this->db->query("SELECT 
-        emp.id_empleado, emp.id_tipo_empleado, emp.nombre, emp.apellido_paterno, emp.apellido_materno, emp.telefono, emp.id_movil, mov.descripcion, emp.estatus, emp.usuario 
+        emp.idEmpleado, emp.idTipoEmpleado, emp.nombre, emp.apellidoPaterno, emp.apellidoMaterno, emp.telefono, emp.idMovil, mov.descripcion, emp.estatus, emp.usuario 
         FROM empleado emp
-        JOIN movil mov ON emp.id_movil = mov.id_movil AND mov.estatus = 1;
+        JOIN movil mov ON emp.idMovil = mov.idMovil AND mov.estatus = 1;
       ");
     }
 
     function getEmpleado($idEmpleado){
         return $this->db->query("
             SELECT 
-            id_empleado, id_tipo_empleado, nombre, apellido_paterno, apellido_materno, telefono, id_movil, estatus, usuario 
-            FROM empleado WHERE id_empleado = ?;", 
+            idEmpleado, idTipoEmpleado, nombre, apellidoPaterno, apellidoMaterno, telefono, idMovil, estatus, usuario 
+            FROM empleado WHERE idEmpleado = ?;", 
             [$idEmpleado]
         );
     }
@@ -26,10 +26,10 @@ class Mempleado extends Model
     function addEmpleado($data){
       $data = [
         "nombre" => isset($data->nombre) ? $data->nombre : NULL,
-        "apellido_paterno" => isset($data->apellido_paterno) ? $data->apellido_paterno : NULL,
-        "apellido_materno" => isset($data->apellido_materno) ? $data->apellido_materno : NULL,
+        "apellidoPaterno" => isset($data->apellidoPaterno) ? $data->apellidoPaterno : NULL,
+        "apellidoMaterno" => isset($data->apellidoMaterno) ? $data->apellidoMaterno : NULL,
         "telefono" => isset($data->telefono) ? $data->telefono : NULL,
-        "id_movil" => isset($data->dispositivo) ? $data->dispositivo->id_movil : NULL,
+        "idMovil" => isset($data->dispositivo) ? $data->dispositivo->idMovil : NULL,
         "usuario" => isset($data->usuario) ? $data->usuario : NULL,
         "contraseña" => isset($data->contraseña) ? $data->contraseña : 123456,
         "estatus" => isset($data->estatus) ? $data->estatus : 1,
@@ -43,28 +43,28 @@ class Mempleado extends Model
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
-    function setEmpleado($id_empleado, $data){
+    function setEmpleado($idEmpleado, $data){
       $data = [
         "nombre" => isset($data->nombre) ? $data->nombre : NULL,
-        "apellido_paterno" => isset($data->apellido_paterno) ? $data->apellido_paterno : NULL,
-        "apellido_materno" => isset($data->apellido_materno) ? $data->apellido_materno : NULL,
+        "apellidoPaterno" => isset($data->apellidoPaterno) ? $data->apellidoPaterno : NULL,
+        "apellidoMaterno" => isset($data->apellidoMaterno) ? $data->apellidoMaterno : NULL,
         "telefono" => isset($data->telefono) ? $data->telefono : NULL,
-        "id_movil" => isset($data->dispositivo) ? $data->dispositivo->id_movil : NULL,
+        "idMovil" => isset($data->dispositivo) ? $data->dispositivo->idMovil : NULL,
         "usuario" => isset($data->usuario) ? $data->usuario : NULL,
         "estatus" => isset($data->estatus) ? $data->estatus : 1,
         "fecha_creacion" => date("Y-m-d H:m:s"),
       ];
       
       $builder = $this->db->table('empleado');
-      $builder->where('id_empleado', $id_empleado);
+      $builder->where('idEmpleado', $idEmpleado);
 
       if (!$builder->update($data)) return ["estatus" => -1, "mensaje" => 'Error al actualizar el Empleado'];
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
-    function delEmpleado($id_empleado){
+    function delEmpleado($idEmpleado){
       $builder = $this->db->table('empleado');
-      $builder->where('id_empleado', $id_empleado);
+      $builder->where('idEmpleado', $idEmpleado);
 
       if (!$builder->delete()) return ["estatus" => -1, "mensaje" => 'Error al borrar el Empelado'];
       return ["estatus" => 1, "mensaje" => 'OK'];

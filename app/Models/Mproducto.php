@@ -11,7 +11,7 @@ class Mproducto extends Model
     }
 
     function getProducto($idProducto){
-      return $this->db->query("SELECT * FROM producto WHERE id_producto = ?;", [$idProducto]);
+      return $this->db->query("SELECT * FROM producto WHERE idProducto = ?;", [$idProducto]);
     }
 
     function addProducto($data){
@@ -29,7 +29,7 @@ class Mproducto extends Model
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
-    function setProducto($id_producto, $data){
+    function setProducto($idProducto, $data){
       $data = [
         "nombre" => isset($data->nombre) ? $data->nombre : NULL,
         "costo" => isset($data->costo) ? $data->costo : NULL,
@@ -38,15 +38,15 @@ class Mproducto extends Model
       ];
       
       $builder = $this->db->table('producto');
-      $builder->where('id_producto', $id_producto);
+      $builder->where('idProducto', $idProducto);
 
       if (!$builder->update($data)) return ["estatus" => -1, "mensaje" => 'Error al actualizar el Producto'];
       return ["estatus" => 1, "mensaje" => 'OK'];
     }
 
-    function delProducto($id_producto){
+    function delProducto($idProducto){
       $builder = $this->db->table('producto');
-      $builder->where('id_producto', $id_producto);
+      $builder->where('idProducto', $idProducto);
 
       if (!$builder->delete()) return ["estatus" => -1, "mensaje" => 'Error al borrar el Producto'];
       return ["estatus" => 1, "mensaje" => 'OK'];
